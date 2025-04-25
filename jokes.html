@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        body{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: blueviolet;
+        }
+      div.jokeContainer{
+        max-width: 500px;
+        width: 85%;
+        height: auto;
+        background-color: white;
+        border-radius: 10px;
+        padding: 20px;
+        background-color: white;
+      }
+
+      div.smile{
+        display: flex;
+        justify-content: center;
+        margin-top: 3rem;
+    
+      }
+      div.smile i{
+        font-size: 7rem;
+        color: rgb(250, 195, 14);
+      }
+      .jokes{
+margin-top: 25px;
+      }
+      .jokes p{
+        text-align: center;
+        padding: 0 10px 0 10px;
+        font-size: 20px;
+      }
+      h1{
+        text-align: center;
+        margin-bottom: 15px;
+      }
+      div.btn{
+        display: flex;
+        justify-content: center;
+      }
+      button{
+        padding: 15px 20px ;
+        font-size: 20px;
+        font-weight: 600;
+        margin-top: 40px;
+        background-color: rgb(230, 177, 31);
+        color: white;
+        border: none;
+        outline: none;
+        border-radius: 8px;
+        transition:transform 0.5s ease-in-out;
+      }
+      button:hover{
+        transform: scale(1.1);
+      }
+
+
+    </style>
+</head>
+<body>
+    <div class="jokeContainer">
+        <div class="smile">
+            <i class="fa-regular fa-face-laugh-beam"></i>
+        </div>
+        <div class="jokes">
+            <h1></h1>
+            <p></p>
+        </div>
+        <div class="btn">
+        <button>Generate Random Joke</button>
+    </div>
+    </div>
+   
+</body>
+
+<!--js-->
+<script>
+    const URL = "https://official-joke-api.appspot.com/jokes/random";
+    let btn = document.querySelector(".btn button");
+    let h1 = document.querySelector(".jokes h1");
+    let p = document.querySelector(".jokes p");
+
+    window.addEventListener("load",creatJoke);
+
+    btn.addEventListener("click", creatJoke);
+    
+    async function creatJoke(){
+        let response = await fetch(URL);
+        let data = await response.json();
+        h1.innerText = data.setup;
+        p.innerText = data.punchline;
+    }
+    </script>
+</html>
